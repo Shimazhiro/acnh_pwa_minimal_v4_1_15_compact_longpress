@@ -9,7 +9,7 @@ const $ = (sel) => document.querySelector(sel);
 const STORAGE_KEY = "acnh_checklist_v4.1";
 
 const defaultState = {
-  meta: { version: "4.1.15" },
+  meta: { version: "4.1.16" },
   settings: {
     hemisphere: "north", // north | south
     nowMode: "auto",     // auto | manual
@@ -78,7 +78,7 @@ function migrateIfNeeded(obj){
 
   // version migration (keep marks)
   const prevVer = (merged.meta && merged.meta.version) ? String(merged.meta.version) : "";
-  const curVer  = "4.1.15";
+  const curVer  = "4.1.16";
   merged.meta = { ...(merged.meta || {}), version: curVer };
 
   if (prevVer !== curVer) {
@@ -259,8 +259,9 @@ function renderList(kind, items){
   // 表示用（先頭ゼロなし）： 1/31 2:22
   const whenAuto = `${m0}/${d0} ${h0}:${pad2(min0)}`;
   // 手動は「月＋時間（分なし）」なので、日付は固定で 1日、分は 00 として表示
-  const mMan = (s.manualMonth||0) + 1;
-  const whenManual = s.manualAnytime ? `${mMan}/1` : `${mMan}/1 ${s.manualHour||0}:00`;
+  const mMan = clampInt(s.manualMonth, 1, 12, (new Date()).getMonth()+1);
+  const hMan = clampInt(String(s.manualTime||"").split(":")[0], 0, 23, (new Date()).getHours());
+  const whenManual = s.manualAnytime ? `${mMan}/1 / すべての時間` : `${mMan}/1 ${hMan}:00`;
   const hemiLabel = (s.hemisphere==="north") ? "北半球" : "南半球";
 
   const maxDay = daysInMonth(s.manualMonth);
