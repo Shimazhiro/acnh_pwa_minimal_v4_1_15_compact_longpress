@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#1e90ff" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./assets/icon-192.png" />
+  <link rel="stylesheet" href="./styles.css" />
+  <title>あつまれどうぶつの森 チェックツール</title>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">あつ森 いきものチェック</div>
+    <div class="tabs">
+      <button class="tab active" data-view="fish">🐟 魚</button>
+      <button class="tab" data-view="bugs">🐞 虫</button>
+      <button class="tab" data-view="sea">🐚 海の幸</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="view-fish" class="view"></section>
+    <section id="view-bugs" class="view hidden"></section>
+    <section id="view-sea" class="view hidden"></section>
+  </main>
+
+  <footer class="footer">
+    <span id="statusText">読み込み中…</span>
+  </footer>
+
+  <!-- file:// 直開きでも動くように、データをインライン同梱 -->
+  <script src="./data-inline.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

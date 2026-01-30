@@ -1,0 +1,172 @@
+:root{
+  --bg:#f6f7fb;
+  --card:#ffffff;
+  --text:#0b1220;
+  --muted:#58627a;
+  --accent:#1e90ff;
+  --border:rgba(10,20,40,.10);
+  --shadow:0 6px 18px rgba(10,20,40,.08);
+  --highlight:#fff3d7; /* 目に優しい淡いクリーム */
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif}
+.topbar{position:sticky;top:0;z-index:10;background:rgba(246,247,251,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:10px 12px}
+.brand{font-weight:900;letter-spacing:.2px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.tab{border:1px solid var(--border);background:var(--card);color:var(--text);padding:8px 10px;border-radius:999px;cursor:pointer;box-shadow:var(--shadow)}
+.tab.active{background:var(--accent);border-color:transparent;color:white}
+
+.container{padding:14px 12px 90px;max-width:1180px;margin:0 auto}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:12px;margin:10px 0;box-shadow:var(--shadow)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.label{color:var(--muted);font-size:12px}
+.small{font-size:12px;color:var(--muted)}
+
+input,select,button{font:inherit}
+input[type="time"],input[type="text"],select{
+  background:#fff;color:var(--text);border:1px solid var(--border);border-radius:10px;padding:8px 10px
+}
+select:disabled,input:disabled{opacity:.55}
+
+.btn{border:1px solid var(--border);background:#fff;color:var(--text);padding:9px 12px;border-radius:10px;cursor:pointer}
+.btn.primary{background:var(--accent);border-color:transparent;color:white}
+
+.sectionGrid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:12px;
+  margin-top:12px;
+}
+.filtersGrid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap:12px;
+  margin-top:12px;
+}
+.fitem{display:flex;flex-direction:column;gap:6px}
+
+.tableWrap{overflow:auto}
+.table{width:100%;border-collapse:collapse;min-width:920px}
+.table th,.table td{border-bottom:1px solid var(--border);padding:8px 6px;text-align:left;vertical-align:top}
+.table th{color:var(--muted);font-weight:800;font-size:12px;white-space:nowrap}
+.badge{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:2px 8px;color:var(--muted);font-size:12px;background:rgba(255,255,255,.85)}
+.badge.now{color:#6a4d00;border-color:rgba(120,90,10,.20);background:rgba(255,243,215,.85)}
+.hidden{display:none}
+
+.footer{position:fixed;bottom:0;left:0;right:0;background:rgba(246,247,251,.92);backdrop-filter:blur(10px);border-top:1px solid var(--border);padding:10px 12px}
+.nameRow{display:flex;align-items:center;gap:8px;white-space:nowrap;overflow:hidden}
+.nameText{font-weight:900;overflow:hidden;text-overflow:ellipsis}
+
+.span2{grid-column: 1 / -1;}
+.spanAll{grid-column: 1 / -1;}
+.checksRow{gap:18px;}
+
+.nowrap{flex-wrap:nowrap}
+
+/* prevent select from forcing large widths */
+.sectionGrid select, .sectionGrid input { min-width: 0; }
+
+
+/* Input with clear button */
+.inputWithClear{ position:relative; display:flex; align-items:center; gap:6px; }
+.inputWithClear input{ flex:1; }
+.clearBtn{ width:34px; height:34px; border:1px solid #d0d0d0; background:#f7f7f7; border-radius:10px; font-size:18px; line-height:1; cursor:pointer; }
+.clearBtn:disabled{ opacity:0.35; cursor:default; }
+.inlineLabel{ font-size:12px; color:#555; white-space:nowrap; }
+
+.manualRow{align-items:flex-end;}
+.manualStack{display:flex;flex-direction:column;gap:4px;}
+.manualStack .inlineLabel{margin:0;white-space:nowrap;}
+.manualRow .manualStack select{min-width:72px;}
+
+.manualRow{align-items:flex-end;}
+
+/* ---- topbar / tabs polish ---- */
+.brand{font-weight:900;letter-spacing:.02em;}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;}
+.tab{
+  border-radius:999px;
+  padding:8px 12px;
+  border:1px solid rgba(0,0,0,.12);
+  background:#fff;
+  font-weight:800;
+}
+.tab.active{
+  border-color:rgba(0,0,0,.22);
+  background:rgba(0,0,0,.04);
+}
+
+/* ---- responsive table: no horizontal scroll on mobile ---- */
+@media (max-width: 640px){
+  .table thead{display:none;}
+  .table, .table tbody, .table tr, .table td{display:block;width:100%;}
+  .table{border:0;}
+  .table tr{
+    border:1px solid rgba(0,0,0,.12);
+    border-radius:14px;
+    padding:10px 12px;
+    margin:10px 0;
+    background:#fff;
+  }
+  .table td{
+    border:0;
+    padding:6px 0;
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+  }
+  .table td::before{
+    content:attr(data-label);
+    font-weight:800;
+    color:rgba(0,0,0,.55);
+    flex:0 0 5.5em;
+  }
+  .table td.td-name{padding-top:2px;}
+  .table td.td-name::before{content:"";}
+  .table td.td-name{display:block;}
+  .table td.td-name .nameRow{display:flex;justify-content:space-between;gap:10px;align-items:center;}
+  .badge{max-width:100%;white-space:normal;}
+}
+
+/* v4.1.15 compact list (mobile-first) */
+body{overflow-x:hidden;}
+.listArea{overflow-x:hidden;}
+.cRow{
+  display:grid;
+  grid-template-columns: auto 3.8em 1fr;
+  gap:10px;
+  align-items:center;
+  padding:10px 12px;
+  border-bottom:1px solid rgba(0,0,0,0.08);
+}
+.cNo{font-variant-numeric: tabular-nums; color: rgba(0,0,0,0.65);}
+.cNameBtn{
+  text-align:left;
+  background:transparent;
+  border:none;
+  padding:0;
+  margin:0;
+  font-size:16px;
+  line-height:1.2;
+  color: inherit;
+}
+.cNameBtn:active{opacity:0.7;}
+.cChk{display:flex;align-items:center;gap:6px;}
+.cChkLabel{font-size:12px;color:rgba(0,0,0,0.7);}
+.cDetail{
+  grid-column: 1 / -1;
+  margin-top:6px;
+  padding:10px;
+  border-radius:10px;
+  background: rgba(0,0,0,0.04);
+}
+.cDetailLine{display:flex;justify-content:space-between;gap:10px;padding:3px 0;}
+.cKey{font-size:12px;color:rgba(0,0,0,0.65);white-space:nowrap;}
+.cVal{font-size:13px;color:rgba(0,0,0,0.85);text-align:right;}
+/* Reduce flicker / tap highlight */
+.tabs button{transition: background-color .15s ease, color .15s ease; box-shadow:none;}
+.tabs button:active{opacity:.85;}
+.tabs button.active{background: rgba(0,0,0,0.08);}
+select, input, button{ -webkit-tap-highlight-color: rgba(0,0,0,0); }
